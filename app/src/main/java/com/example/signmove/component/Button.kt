@@ -1,6 +1,7 @@
 package com.example.signmove.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -17,8 +18,9 @@ import androidx.compose.ui.unit.sp
 import com.example.signmove.R
 import com.example.signmove.bold
 
+
 @Composable
-fun Button(text : String, modifier: Modifier = Modifier) {
+fun Button(text: String, modifier: Modifier = Modifier, onClick: () -> Unit) {
     Box(
         modifier = modifier
             .fillMaxWidth()
@@ -27,7 +29,8 @@ fun Button(text : String, modifier: Modifier = Modifier) {
             .background(
                 color = colorResource(R.color.primary),
                 shape = RoundedCornerShape(12.dp)
-            ),
+            )
+            .clickable { onClick() },
         contentAlignment = Alignment.Center
     ) {
         Text(
@@ -42,8 +45,8 @@ fun Button(text : String, modifier: Modifier = Modifier) {
 
 
 
-@Preview (showBackground = true)
-@Composable
-fun ButtonPreview() {
-    Button("시작하기")
-}
+//@Preview (showBackground = true)
+//@Composable
+//fun ButtonPreview() {
+//    Button("시작하기")
+//}

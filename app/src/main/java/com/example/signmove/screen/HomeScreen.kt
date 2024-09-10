@@ -32,7 +32,6 @@ import com.example.signmove.component.NavigationBar
 import com.example.signmove.component.SignBox
 import com.example.signmove.component.TopBar
 import com.example.signmove.regular
-import com.example.signmove.ui.theme.SignMoveTheme
 
 @Composable
 fun HomeScreen(navController: NavHostController = rememberNavController()) {

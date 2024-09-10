@@ -27,7 +27,7 @@ import com.example.signmove.medium
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextField(descriptext : String, inputtext : String) {
+fun InputField(descriptext : String, inputtext : String) {
     var text by remember { mutableStateOf("") }
 
     Column (
@@ -39,11 +39,11 @@ fun TextField(descriptext : String, inputtext : String) {
             text = descriptext,
             color = colorResource(id = R.color.gray5),
             fontFamily = medium,
-            fontSize = 14.sp,
-            lineHeight = 19.6.sp,
+            fontSize = 16.sp,
+            lineHeight = 22.4.sp,
             modifier = Modifier.padding(start = 6.dp)
         )
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(8.dp))
         androidx.compose.material3.TextField(
             value = text,
             onValueChange = { newText -> text = newText },
@@ -52,8 +52,8 @@ fun TextField(descriptext : String, inputtext : String) {
                     text = inputtext,
                     color = colorResource(id = R.color.gray3),
                     fontFamily = medium,
-                    fontSize = 14.sp,
-                    lineHeight = 19.6.sp
+                    fontSize = 16.sp,
+                    lineHeight = 22.4.sp
                 )
             },
             modifier = Modifier
@@ -63,7 +63,10 @@ fun TextField(descriptext : String, inputtext : String) {
                     color = colorResource(id = R.color.gray2),
                     shape = RoundedCornerShape(8.dp)
                 )
-                .background(color = colorResource(id = R.color.gray1))
+                .background(
+                    color = colorResource(id = R.color.gray1),
+                    shape = RoundedCornerShape(8.dp)
+                )
             ,
             textStyle = androidx.compose.ui.text.TextStyle(
                 color = colorResource(id = R.color.gray3),
@@ -84,5 +87,5 @@ fun TextField(descriptext : String, inputtext : String) {
 @Preview (showBackground = true)
 @Composable
 fun FieldPreview() {
-    TextField(descriptext = "앙김호지", inputtext = "깁호지")
+    InputField(descriptext = "앙김호지", inputtext = "깁호지")
 }

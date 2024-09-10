@@ -38,10 +38,10 @@ fun NavigationBar(modifier: Modifier = Modifier, navController: NavHostControlle
 
     ) {
         NavigationItem(
-            iconResId = if (currentRoute == "home") R.drawable.selectedhome else R.drawable.home,
+            iconResId = if (currentRoute == "main") R.drawable.selectedhome else R.drawable.home,
             label = "홈",
-            isSelected = currentRoute == "home",
-            onClick = { navController.navigate("home") },
+            isSelected = currentRoute == "main",
+            onClick = { navController.navigate("main") },
             modifier = Modifier.weight(1f)
         )
         NavigationItem(
@@ -80,7 +80,7 @@ fun NavigationItem(iconResId: Int, label: String, isSelected: Boolean, onClick: 
         Icon(
             painter = painterResource(id = iconResId),
             contentDescription = label,
-//            tint = if (isSelected) colorResource(id = R.color.gray5) else colorResource(id = R.color.gray3)
+            tint = if (isSelected) colorResource(id = R.color.gray5) else colorResource(id = R.color.gray3)
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(

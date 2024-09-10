@@ -16,11 +16,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.signmove.screen.CheckScreen
 import com.example.signmove.screen.HomeScreen
+import com.example.signmove.screen.InputIntroScreen
+import com.example.signmove.screen.InputNameScreen
 import com.example.signmove.screen.IssueScreen
 import com.example.signmove.screen.ProfileScreen
+import com.example.signmove.screen.SelectTownScreen
 import com.example.signmove.screen.SignScreen
-import com.example.signmove.screen.StartScreen
 import com.example.signmove.ui.theme.SignMoveTheme
 
 
@@ -43,8 +46,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             SignMoveTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = "start") {
-                    composable("start") { StartScreen(navController)}
+                NavHost(navController = navController, startDestination = "main") {
+                    composable("name") { InputNameScreen(navController)}
+                    composable("intro") { InputIntroScreen(navController)}
+                    composable("town") { SelectTownScreen(navController)}
+                    composable("check") { CheckScreen(navController)}
                     composable("main") { HomeScreen(navController)}
                     composable("issue") { IssueScreen(navController)}
                     composable("sign") { SignScreen(navController)}
