@@ -23,7 +23,9 @@ import com.example.signmove.screen.InputNameScreen
 import com.example.signmove.screen.IssueScreen
 import com.example.signmove.screen.ProfileScreen
 import com.example.signmove.screen.SelectTownScreen
+import com.example.signmove.screen.SignDetailScreen
 import com.example.signmove.screen.SignScreen
+import com.example.signmove.screen.SignWriteScreen
 import com.example.signmove.ui.theme.SignMoveTheme
 
 
@@ -46,7 +48,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             SignMoveTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = "main") {
+                NavHost(navController = navController, startDestination = "sign detail") {
                     composable("name") { InputNameScreen(navController)}
                     composable("intro") { InputIntroScreen(navController)}
                     composable("town") { SelectTownScreen(navController)}
@@ -54,6 +56,8 @@ class MainActivity : ComponentActivity() {
                     composable("main") { HomeScreen(navController)}
                     composable("issue") { IssueScreen(navController)}
                     composable("sign") { SignScreen(navController)}
+                    composable("sign detail") { SignDetailScreen(navController)}
+                    composable("sign write") { SignWriteScreen(navController)}
                     composable("profile") { ProfileScreen(navController)}
                 }
             }

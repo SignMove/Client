@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -47,6 +48,7 @@ fun SignWriteScreen(navController: NavHostController = rememberNavController()) 
             modifier = Modifier
                 .fillMaxSize()
                 .background(color = colorResource(id = R.color.white))
+                .imePadding()
         ) {
             item { BackOrCompleteBar(pagename = "게시물 작성") }
             item { PhotoAddButton() }
@@ -56,13 +58,6 @@ fun SignWriteScreen(navController: NavHostController = rememberNavController()) 
             item { ExposeCheckBox() }
 
         }
-
-        NavigationBar(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .fillMaxWidth(),
-            navController = navController
-        )
     }
 }
 

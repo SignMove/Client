@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -24,26 +25,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.signmove.R
 import com.example.signmove.medium
+import com.example.signmove.screen.CommentInsert
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InputField(descriptext : String, inputtext : String) {
+fun CommentInputField(inputtext: String) {
     var text by remember { mutableStateOf("") }
 
-    Column (
+    Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 10.dp, horizontal = 20.dp)
+            .width(305.dp)
     ) {
-        Text(
-            text = descriptext,
-            color = colorResource(id = R.color.gray5),
-            fontFamily = medium,
-            fontSize = 16.sp,
-            lineHeight = 22.4.sp,
-            modifier = Modifier.padding(start = 6.dp)
-        )
-        Spacer(modifier = Modifier.height(8.dp))
         androidx.compose.material3.TextField(
             value = text,
             onValueChange = { newText -> text = newText },
@@ -66,8 +58,7 @@ fun InputField(descriptext : String, inputtext : String) {
                 .background(
                     color = colorResource(id = R.color.gray1),
                     shape = RoundedCornerShape(8.dp)
-                )
-            ,
+                ),
             textStyle = androidx.compose.ui.text.TextStyle(
                 color = colorResource(id = R.color.gray3),
                 fontFamily = medium,
@@ -81,11 +72,10 @@ fun InputField(descriptext : String, inputtext : String) {
             )
         )
     }
-
 }
 
 @Preview (showBackground = true)
 @Composable
-fun FieldPreview() {
-    InputField(descriptext = "앙김호지", inputtext = "깁호지")
+fun CInputFieldPreview() {
+    CommentInsert()
 }
