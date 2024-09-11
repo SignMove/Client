@@ -1,5 +1,6 @@
 package com.example.signmove.screen
 
+import android.util.Log
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -14,18 +15,22 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.StrokeJoin
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.consumeAllChanges
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.toSize
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.signmove.R
@@ -248,7 +253,7 @@ fun CommentInsert(modifier: Modifier = Modifier) {
         )
         Row(
             modifier = Modifier
-                .padding(top = 10.dp, bottom = 10.dp, start = 20.dp)
+                .padding(10.dp)
                 .fillMaxWidth()
         ) {
             CommentInputField(inputtext = "댓글을 입력해주세요")
@@ -270,12 +275,14 @@ fun CommentInsert(modifier: Modifier = Modifier) {
         }
     }
 }
-
 @Composable
 fun SignatureDialog(onDismiss: () -> Unit) {
     val brushColor = colorResource(id = R.color.gray5)
-    var path by remember { mutableStateOf(Path()) }
-    var drawing by remember { mutableStateOf(false) }
+    val paths = remember { mutableStateListOf<Pair<Offset, Offset>>() }
+    var currentPath by remember { mutableStateOf<Pair<Offset, Offset>?>(null) }
+
+    var canvasSize by remember { mutableStateOf(Size.Zero) }
+    var canvasPosition by remember { mutableStateOf(Offset.Zero) }
 
     Box(
         modifier = Modifier
@@ -317,31 +324,55 @@ fun SignatureDialog(onDismiss: () -> Unit) {
                         color = colorResource(id = R.color.gray2),
                         shape = RoundedCornerShape(8.dp)
                     )
+                    .onGloballyPositioned { coordinates ->
+                        canvasSize = coordinates.size.toSize()
+                        canvasPosition = coordinates.positionInRoot()
+                    }
                     .pointerInput(Unit) {
                         detectDragGestures(
                             onDragStart = { offset ->
-                                drawing = true
-                                path.moveTo(offset.x, offset.y)
+                                currentPath = Offset(offset.x, offset.y) to Offset(offset.x, offset.y)
                             },
                             onDragEnd = {
-                                drawing = false
+                                currentPath?.let { paths.add(it) }
+                                currentPath = null
                             },
                             onDrag = { change, _ ->
-                                if (drawing) {
-                                    path.lineTo(change.position.x, change.position.y)
+                                val newPosition = change.position
+                                if (newPosition.x > 0 && newPosition.x < canvasSize.width &&
+                                    newPosition.y > 0 && newPosition.y < canvasSize.height
+                                ) {
+                                    val newOffset = Offset(newPosition.x, newPosition.y)
+                                    currentPath = currentPath?.first?.let { it to newOffset }
+                                    currentPath?.let { paths.add(it) }
+                                    currentPath = currentPath?.copy(first = newOffset)
                                 }
                             }
                         )
                         detectTapGestures {
-                            path.reset()
+                            paths.clear()
+                            currentPath = null
                         }
                     }
             ) {
-                drawPath(
-                    path = path,
-                    color = brushColor,
-                    style = Stroke(width = 5.dp.toPx(), cap = StrokeCap.Round, join = StrokeJoin.Round)
-                )
+                paths.forEach { (start, end) ->
+                    drawLine(
+                        color = brushColor,
+                        start = start,
+                        end = end,
+                        strokeWidth = 5.dp.toPx(),
+                        cap = StrokeCap.Round
+                    )
+                }
+                currentPath?.let { (start, end) ->
+                    drawLine(
+                        color = brushColor,
+                        start = start,
+                        end = end,
+                        strokeWidth = 5.dp.toPx(),
+                        cap = StrokeCap.Round
+                    )
+                }
             }
             Spacer(modifier = Modifier.height(14.dp))
             Button(text = "완료") {
@@ -350,10 +381,6 @@ fun SignatureDialog(onDismiss: () -> Unit) {
         }
     }
 }
-
-
-
-
 
 
 
