@@ -34,7 +34,6 @@ import androidx.compose.ui.unit.toSize
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.signmove.R
-import com.example.signmove.SignInfo
 import com.example.signmove.bold
 import com.example.signmove.component.Button
 import com.example.signmove.component.CommentBox

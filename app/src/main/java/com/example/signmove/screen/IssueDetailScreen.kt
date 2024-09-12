@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.signmove.R
-import com.example.signmove.SignInfo
 import com.example.signmove.component.GoBackBar
 import com.example.signmove.regular
 
