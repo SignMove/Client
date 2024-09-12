@@ -25,7 +25,7 @@ import com.example.signmove.component.GoBackBar
 import com.example.signmove.regular
 
 @Composable
-fun IssueDetailScreen(navController: NavHostController = rememberNavController()) {
+fun IssueDetailScreen(id: Int?, navController: NavHostController = rememberNavController()) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -96,11 +96,4 @@ fun IssueTextBox() {
             lineHeight = 19.6.sp
         )
     }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun IssueInDetailPreview() {
-    IssueDetailScreen()
 }

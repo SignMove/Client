@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,6 +23,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
 import com.example.signmove.R
 import com.example.signmove.bold
 import com.example.signmove.regular
@@ -38,7 +40,7 @@ fun SignBox(onClick: () -> Unit) {
     ) {
         SignBoxInfoColumn()
         Spacer(modifier = Modifier.width(14.dp))
-        ImageBox()
+        ImageBox("")
     }
 }
 
@@ -122,7 +124,7 @@ fun SignBoxInfoColumn() {
 }
 
 @Composable
-fun ImageBox() {
+fun ImageBox(image: String) {
     Box(
         modifier = Modifier
             .size(80.dp)
@@ -130,12 +132,18 @@ fun ImageBox() {
                 color = colorResource(id = R.color.gray1),
                 shape = RoundedCornerShape(8.dp)
             )
-    )
+    ) {
+        ImageFromUrl(url = image)
+    }
 }
 
-
-@Preview (showBackground = true)
 @Composable
-fun SignBoxPreview() {
-    SignBox(onClick = {})
+fun ImageFromUrl(url: String) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        AsyncImage(
+            model = url,
+            contentDescription = "Remote Image",
+            modifier = Modifier.fillMaxSize() // 원하는 크기 설정
+        )
+    }
 }

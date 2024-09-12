@@ -24,9 +24,11 @@ import com.example.signmove.R
 import com.example.signmove.bold
 import com.example.signmove.regular
 import com.example.signmove.screen.IssueScreen
+import androidx.compose.foundation.layout.fillMaxSize
+import coil.compose.AsyncImage
 
 @Composable
-fun IssueBox(onClick: () -> Unit) {
+fun IssueBox(title: String, image: String, onClick: () -> Unit) {
     Row (
         modifier = Modifier
             .fillMaxWidth()
@@ -36,15 +38,14 @@ fun IssueBox(onClick: () -> Unit) {
             .clickable(onClick = onClick),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        ImageBox()
+        ImageBox(image)
         Spacer(modifier = Modifier.width(14.dp))
-        IssueBoxInfoCol()
+        IssueBoxInfoCol(title, image)
     }
 }
 
 @Composable
-fun IssueBoxInfoCol() {
-    val title = "제목"
+fun IssueBoxInfoCol(title: String, image: String) {
     val writer = "언론사"
     val min = 5
     Column (
@@ -92,10 +93,4 @@ fun IssueBoxInfoCol() {
             )
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewIssueBox() {
-    IssueBox(onClick = {})
 }

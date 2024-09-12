@@ -63,7 +63,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         SignMoveTheme {
                             val navController = rememberNavController()
-                            NavHost(navController = navController, startDestination = "sign detail") {
+                            NavHost(navController = navController, startDestination = "name") {
                                 composable("name") { InputNameScreen(navController)}
                                 composable("intro/{name}") { entry ->
                                     val name = entry.arguments?.getString("name")
@@ -79,7 +79,9 @@ class MainActivity : ComponentActivity() {
                                     CheckScreen(name, description, town, navController)}
                                 composable("main") { HomeScreen(navController)}
                                 composable("issue") { IssueScreen(navController)}
-                                composable("issue detail") { IssueDetailScreen(navController)}
+                                composable("issue-detail/{id}") { entry ->
+                                    val id = entry.arguments?.getInt("id")
+                                    IssueDetailScreen(id, navController)}
                                 composable("sign") { SignScreen(navController)}
                                 composable("sign detail") { SignDetailScreen(navController)}
                                 composable("sign write") { SignWriteScreen(navController)}

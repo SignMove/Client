@@ -66,9 +66,9 @@ fun HomeScreen(navController: NavHostController = rememberNavController()) {
                 navController.navigate("sign detail")
             } } }
             item { SeeMoreButton() }
-            repeat(3) { item { IssueBox {
-                navController.navigate("sign detail")
-            } } }
+//            repeat(3) { item { IssueBox {
+//                navController.navigate("sign detail")
+//            } } }
             item { SeeMoreButton() }
         }
 
