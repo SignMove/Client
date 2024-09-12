@@ -1,6 +1,7 @@
 package com.example.signmove.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,13 +26,14 @@ import com.example.signmove.regular
 import com.example.signmove.screen.IssueScreen
 
 @Composable
-fun IssueBox() {
+fun IssueBox(onClick: () -> Unit) {
     Row (
         modifier = Modifier
             .fillMaxWidth()
             .height(104.dp)
             .background(color = colorResource(id = R.color.white))
-            .padding(vertical = 12.dp, horizontal = 20.dp),
+            .padding(vertical = 12.dp, horizontal = 20.dp)
+            .clickable(onClick = onClick),
         verticalAlignment = Alignment.CenterVertically
     ) {
         ImageBox()
@@ -95,5 +97,5 @@ fun IssueBoxInfoCol() {
 @Preview(showBackground = true)
 @Composable
 fun PreviewIssueBox() {
-    IssueBox()
+    IssueBox(onClick = {})
 }

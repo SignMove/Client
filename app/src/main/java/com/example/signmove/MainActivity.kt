@@ -20,8 +20,11 @@ import com.example.signmove.screen.CheckScreen
 import com.example.signmove.screen.HomeScreen
 import com.example.signmove.screen.InputIntroScreen
 import com.example.signmove.screen.InputNameScreen
+import com.example.signmove.screen.IssueDetailScreen
 import com.example.signmove.screen.IssueScreen
 import com.example.signmove.screen.ProfileScreen
+import com.example.signmove.screen.RegionSelectScreen
+import com.example.signmove.screen.SearchScreen
 import com.example.signmove.screen.SelectTownScreen
 import com.example.signmove.screen.SignDetailScreen
 import com.example.signmove.screen.SignScreen
@@ -55,9 +58,12 @@ class MainActivity : ComponentActivity() {
                     composable("check") { CheckScreen(navController)}
                     composable("main") { HomeScreen(navController)}
                     composable("issue") { IssueScreen(navController)}
+                    composable("issue detail") { IssueDetailScreen(navController)}
                     composable("sign") { SignScreen(navController)}
                     composable("sign detail") { SignDetailScreen(navController)}
                     composable("sign write") { SignWriteScreen(navController)}
+                    composable("region select") { RegionSelectScreen(navController) }
+                    composable("search") { SearchScreen(navController) }
                     composable("profile") { ProfileScreen(navController)}
                 }
             }

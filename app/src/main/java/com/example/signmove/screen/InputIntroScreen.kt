@@ -22,11 +22,13 @@ fun InputIntroScreen(navController: NavHostController = rememberNavController())
             .fillMaxSize()
             .background(color = colorResource(id = R.color.white))
     ) {
-        RegisterMainText(text = "소개를 입력해주세요")
+        RegisterMainText(text = "소개를 입력해주세요") {
+            navController.navigate("name")
+        }
         InputField(descriptext = "소개", inputtext = "입력해 주세요")
         Spacer(modifier = Modifier.weight(1f))
         Button(text = "다음") {
-
+            navController.navigate("town")
         }
     }
 }

@@ -58,7 +58,9 @@ fun SignDetailScreen(navController: NavHostController = rememberNavController())
                 .padding(bottom = 70.dp)
                 .background(color = colorResource(id = R.color.white))
         ) {
-            item { GoBackBar() }
+            item { GoBackBar {
+                navController.navigate("sign")
+            } }
             item { SignImageInputBox() }
             val signInfo = SignInfo(
                 town = "서울",

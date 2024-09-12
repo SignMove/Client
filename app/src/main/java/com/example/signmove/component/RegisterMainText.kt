@@ -1,6 +1,7 @@
 package com.example.signmove.component
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -21,7 +22,7 @@ import com.example.signmove.bold
 
 
 @Composable
-fun RegisterMainText(text : String) {
+fun RegisterMainText(text : String, onClick: () -> Unit) {
     Column (
         modifier = Modifier
             .fillMaxWidth()
@@ -31,7 +32,8 @@ fun RegisterMainText(text : String) {
     ) {
         Icon(
             painter = painterResource(id = R.drawable.arrowback),
-            contentDescription = "뒤로가기"
+            contentDescription = "뒤로가기",
+            modifier = Modifier.clickable(onClick = onClick)
         )
         Spacer(modifier = Modifier.height(20.dp))
         Text(
@@ -47,5 +49,5 @@ fun RegisterMainText(text : String) {
 @Preview(showBackground = true)
 @Composable
 fun MainTextPreview() {
-    RegisterMainText("이름을 입력해주세요")
+    RegisterMainText("이름을 입력해주세요", onClick = {})
 }

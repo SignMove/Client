@@ -15,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.signmove.R
 import com.example.signmove.component.IssueBox
 import com.example.signmove.component.NavigationBar
+import com.example.signmove.component.SignBox
 import com.example.signmove.component.TopBar
 
 @Composable
@@ -30,16 +31,15 @@ fun IssueScreen(navController: NavHostController = rememberNavController()) {
                 .background(color = colorResource(id = R.color.white)),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            item { TopBar() }
-            item { IssueBox() }
-            item { IssueBox() }
-            item { IssueBox() }
-            item { IssueBox() }
-            item { IssueBox() }
-            item { IssueBox() }
-            item { IssueBox() }
-            item { IssueBox() }
-            item { IssueBox() }
+            item {
+                TopBar(
+                    onRegionSelectClick = { navController.navigate("region select") },
+                    onSearchClick = { navController.navigate("search") }
+                )
+            }
+            repeat(10) { item { IssueBox {
+                navController.navigate("sign detail")
+            } } }
         }
         NavigationBar(
             modifier = Modifier

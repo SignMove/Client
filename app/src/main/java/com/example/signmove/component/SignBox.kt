@@ -2,6 +2,7 @@ package com.example.signmove.component
 
 import android.icu.text.IDNA.Info
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,13 +27,14 @@ import com.example.signmove.bold
 import com.example.signmove.regular
 
 @Composable
-fun SignBox() {
+fun SignBox(onClick: () -> Unit) {
     Row (
         modifier = Modifier
             .fillMaxWidth()
             .height(112.dp)
             .background(color = colorResource(id = R.color.white))
             .padding(vertical = 16.dp, horizontal = 20.dp)
+            .clickable(onClick = onClick)
     ) {
         SignBoxInfoColumn()
         Spacer(modifier = Modifier.width(14.dp))
@@ -135,5 +137,5 @@ fun ImageBox() {
 @Preview (showBackground = true)
 @Composable
 fun SignBoxPreview() {
-    SignBox()
+    SignBox(onClick = {})
 }

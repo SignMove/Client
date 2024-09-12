@@ -48,7 +48,9 @@ fun CheckScreen(navController: NavHostController = rememberNavController()) {
             lineHeight = 33.6.sp
         )
         Spacer(modifier = Modifier.weight(1f))
-        Button(text = "완료") {}
+        Button(text = "완료") {
+            navController.navigate("main")
+        }
     }
 }
 

@@ -38,7 +38,9 @@ fun IssueDetailScreen(navController: NavHostController = rememberNavController()
                 .padding(bottom = 70.dp)
                 .background(color = colorResource(id = R.color.white))
         ) {
-            item { GoBackBar() }
+            item { GoBackBar {
+                navController.navigate("issue")
+            } }
             val signInfo = SignInfo(
                 town = "동아일보",
                 writer = "작성자",
@@ -72,7 +74,8 @@ fun IssueImageInputBox() {
             .height(180.dp)
             .background(
                 color = colorResource(id = R.color.gray1),
-                shape = RoundedCornerShape(8.dp))
+                shape = RoundedCornerShape(8.dp)
+            )
     )
 }
 

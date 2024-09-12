@@ -1,7 +1,6 @@
 package com.example.signmove.component
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,7 +21,10 @@ import com.example.signmove.R
 import com.example.signmove.bold
 
 @Composable
-fun TopBar() {
+fun TopBar(
+    onRegionSelectClick: () -> Unit,
+    onSearchClick: () -> Unit
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -30,8 +32,9 @@ fun TopBar() {
             .padding(vertical = 16.dp, horizontal = 20.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Row (
-          modifier = Modifier
+        Row(
+            modifier = Modifier
+                .clickable(onClick = onRegionSelectClick),
         ) {
             Text(
                 text = "은평구",
@@ -40,24 +43,31 @@ fun TopBar() {
                 lineHeight = 28.sp,
                 color = colorResource(id = R.color.gray5)
             )
-            Spacer(
-                modifier = Modifier.width(6.dp)
-            )
+            Spacer(modifier = Modifier.width(6.dp))
             Icon(
                 painter = painterResource(id = R.drawable.down),
                 contentDescription = "동네 선택"
             )
         }
+
         Spacer(modifier = Modifier.weight(1f))
+
+        // 검색 아이콘 부분
         Icon(
             painter = painterResource(id = R.drawable.search),
-            contentDescription = "검색"
+            contentDescription = "검색",
+            modifier = Modifier
+                .clickable(onClick = onSearchClick)
         )
     }
 }
 
+
 @Preview(showBackground = true)
 @Composable
 fun TopbarPreview() {
-    TopBar()
+    TopBar(
+        onRegionSelectClick = { /* 빈 람다 */ },
+        onSearchClick = { /* 빈 람다 */ }
+    )
 }

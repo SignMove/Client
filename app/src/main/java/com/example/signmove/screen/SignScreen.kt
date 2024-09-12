@@ -36,33 +36,36 @@ fun SignScreen(navController: NavHostController = rememberNavController()) {
             .fillMaxSize()
             .background(color = colorResource(id = R.color.white))
     ) {
-        LazyColumn (
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .background(color = colorResource(id = R.color.white)),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            item { TopBar() }
-            item { SignBox() }
-            item { SignBox() }
-            item { SignBox() }
-            item { SignBox() }
-            item { SignBox() }
-            item { SignBox() }
-            item { SignBox() }
-            item { SignBox() }
-            item { SignBox() }
-            item { SignBox() }
-
+            item {
+                TopBar(
+                    onRegionSelectClick = {
+                        navController.navigate("region select")
+                    },
+                    onSearchClick = {
+                        navController.navigate("search")
+                    }
+                )
+            }
+            repeat(10) { item { SignBox {
+                navController.navigate("sign detail")
+            } } }
         }
-        SignPlus (
+
+        SignPlus(
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .padding(bottom = 84.dp, end = 24.dp),
             onClick = {
-                navController.navigate("main")
+                navController.navigate("sign write")
             }
         )
+
         NavigationBar(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
@@ -71,6 +74,7 @@ fun SignScreen(navController: NavHostController = rememberNavController()) {
         )
     }
 }
+
 
 @Composable
 fun SignPlus(modifier: Modifier = Modifier, onClick: () -> Unit) {

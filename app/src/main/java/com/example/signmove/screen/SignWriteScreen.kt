@@ -50,7 +50,9 @@ fun SignWriteScreen(navController: NavHostController = rememberNavController()) 
                 .background(color = colorResource(id = R.color.white))
                 .imePadding()
         ) {
-            item { BackOrCompleteBar(pagename = "게시물 작성") }
+            item { BackOrCompleteBar(pagename = "게시물 작성") {
+                navController.navigate("sign")
+            } }
             item { PhotoAddButton() }
             item { InputField(descriptext = "제목", inputtext = "입력해 주세요") }
             item { InputField(descriptext = "목표 인원", inputtext = "입력해 주세요") }

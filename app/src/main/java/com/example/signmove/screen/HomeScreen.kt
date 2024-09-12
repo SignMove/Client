@@ -28,6 +28,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.signmove.R
 import com.example.signmove.bold
+import com.example.signmove.component.IssueBox
 import com.example.signmove.component.NavigationBar
 import com.example.signmove.component.SignBox
 import com.example.signmove.component.TopBar
@@ -45,7 +46,12 @@ fun HomeScreen(navController: NavHostController = rememberNavController()) {
                 .fillMaxSize()
                 .background(color = colorResource(id = R.color.white))
         ) {
-            item { TopBar() }
+            item {
+                TopBar(
+                    onRegionSelectClick = { navController.navigate("region select") },
+                    onSearchClick = { navController.navigate("search") }
+                )
+            }
             item { MainImage() }
             item {
                 Spacer(
@@ -56,9 +62,13 @@ fun HomeScreen(navController: NavHostController = rememberNavController()) {
                 )
             }
             item { SubTitle() }
-            item { SignBox() }
-            item { SignBox() }
-            item { SignBox() }
+            repeat(3) { item { SignBox {
+                navController.navigate("sign detail")
+            } } }
+            item { SeeMoreButton() }
+            repeat(3) { item { IssueBox {
+                navController.navigate("sign detail")
+            } } }
             item { SeeMoreButton() }
         }
 
