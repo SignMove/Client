@@ -61,13 +61,13 @@ fun SignDetailScreen(navController: NavHostController = rememberNavController())
                 navController.navigate("sign")
             } }
             item { SignImageInputBox() }
-            val signInfo = SignInfo(
-                town = "서울",
-                writer = "작성자",
-                min = 5,
-                title = "제목"
-            )
-            item { SignTitle(signInfo = signInfo) }
+//            val signInfo = SignInfo(
+//                town = "서울",
+//                writer = "작성자",
+//                min = 5,
+//                title = "제목"
+//            )
+//            item { SignTitle(signInfo = signInfo) }
             item { SignCountBox() }
             item { Button(text = "서명하기") { isSignatureDialogOpen = true } }
             item { SignTextBox() }
@@ -100,55 +100,55 @@ fun SignImageInputBox() {
     )
 }
 
-@Composable
-fun SignTitle(signInfo: SignInfo) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(80.dp)
-            .padding(vertical = 14.dp, horizontal = 20.dp)
-    ) {
-        Text(
-            text = signInfo.title,
-            color = colorResource(id = R.color.gray5),
-            fontFamily = bold,
-            fontSize = 18.sp,
-            lineHeight = 25.2.sp
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(17.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = signInfo.town,
-                fontSize = 14.sp,
-                fontFamily = regular,
-                lineHeight = 19.6.sp,
-                color = colorResource(id = R.color.gray4)
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Box(
-                modifier = Modifier
-                    .size(4.dp)
-                    .background(
-                        color = colorResource(id = R.color.gray1),
-                        shape = RoundedCornerShape(2.dp)
-                    )
-            )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text(
-                text = "${signInfo.min}분 전",
-                fontSize = 14.sp,
-                fontFamily = regular,
-                lineHeight = 19.6.sp,
-                color = colorResource(id = R.color.primary)
-            )
-        }
-    }
-}
+//@Composable
+//fun SignTitle(signInfo: SignInfo) {
+//    Column(
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .height(80.dp)
+//            .padding(vertical = 14.dp, horizontal = 20.dp)
+//    ) {
+//        Text(
+//            text = signInfo.title,
+//            color = colorResource(id = R.color.gray5),
+//            fontFamily = bold,
+//            fontSize = 18.sp,
+//            lineHeight = 25.2.sp
+//        )
+//        Spacer(modifier = Modifier.height(10.dp))
+//        Row(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .height(17.dp),
+//            verticalAlignment = Alignment.CenterVertically
+//        ) {
+//            Text(
+//                text = signInfo.town,
+//                fontSize = 14.sp,
+//                fontFamily = regular,
+//                lineHeight = 19.6.sp,
+//                color = colorResource(id = R.color.gray4)
+//            )
+//            Spacer(modifier = Modifier.width(8.dp))
+//            Box(
+//                modifier = Modifier
+//                    .size(4.dp)
+//                    .background(
+//                        color = colorResource(id = R.color.gray1),
+//                        shape = RoundedCornerShape(2.dp)
+//                    )
+//            )
+//            Spacer(modifier = Modifier.width(8.dp))
+//            Text(
+//                text = "${signInfo.min}분 전",
+//                fontSize = 14.sp,
+//                fontFamily = regular,
+//                lineHeight = 19.6.sp,
+//                color = colorResource(id = R.color.primary)
+//            )
+//        }
+//    }
+//}
 
 @Composable
 fun SignCountBox() {

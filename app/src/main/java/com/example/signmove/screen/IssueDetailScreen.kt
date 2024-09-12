@@ -40,13 +40,13 @@ fun IssueDetailScreen(navController: NavHostController = rememberNavController()
             item { GoBackBar {
                 navController.navigate("issue")
             } }
-            val signInfo = SignInfo(
-                town = "동아일보",
-                writer = "작성자",
-                min = 40,
-                title = "대통령실 “2025년 의대 증원 재논의 불가능”"
-            )
-            item { SignTitle(signInfo = signInfo) }
+//            val signInfo = SignInfo(
+//                town = "동아일보",
+//                writer = "작성자",
+//                min = 40,
+//                title = "대통령실 “2025년 의대 증원 재논의 불가능”"
+//            )
+//            item { SignTitle(signInfo = signInfo) }
             item { IssueImageInputBox() }
             item { IssueTextBox() }
             item {

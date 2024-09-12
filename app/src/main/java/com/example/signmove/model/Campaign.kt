@@ -1,6 +1,8 @@
-package com.example.signmove.model.req
+package com.example.signmove.model
 
 data class Campaign(
+    val id: Int,
+    val createdAt: String,
     val images: List<String>,
     val owner: Int,
     val title: String,
