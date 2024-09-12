@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-parcelize")
 }
 
 android {
@@ -50,10 +51,13 @@ android {
 }
 
 dependencies {
-    implementation("com.google.android.gms:play-services-auth:20.5.0")
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-
+    implementation(libs.play.services.auth)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation (libs.accompanist.pager)
+    implementation (libs.accompanist.pager.v0251)
+    implementation (libs.accompanist.pager.indicators.v0251)
+    implementation (libs.accompanist.pager.indicators)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)

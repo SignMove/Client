@@ -15,6 +15,10 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
@@ -33,7 +37,8 @@ import com.example.signmove.component.TownInfoBox
 import com.example.signmove.medium
 
 @Composable
-fun SelectTownScreen(navController: NavHostController = rememberNavController()) {
+fun SelectTownScreen(name: String?, description: String?, navController: NavHostController = rememberNavController()) {
+    var town by remember { mutableStateOf("") }
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -42,19 +47,16 @@ fun SelectTownScreen(navController: NavHostController = rememberNavController())
         RegisterMainText(text = "동네를 선택해주세요") {
             navController.navigate("intro")
         }
-        InputField(descriptext = "동네", inputtext = "동명(읍, 면)으로 검색")
+        InputField(descriptext = "동네", inputtext = "동명(읍, 면)으로 검색",
+                value = town,
+            onValueChange = { new -> town = new }
+        )
         TownButton()
         TownInfoBox(towninfotext = "호로봄ㄴ")
         Spacer(modifier = Modifier.weight(1f))
         Button(text = "다음") {
-            navController.navigate("check")
+            if (town.isNotEmpty())
+                navController.navigate("check/$name/$description/$town")
         }
     }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun SelectTownPreview() {
-    SelectTownScreen()
 }

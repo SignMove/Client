@@ -23,10 +23,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.signmove.R
 import com.example.signmove.component.InputField
+import com.example.signmove.component.Layer
 
 @Composable
-fun SearchScreen(navController: NavHostController = rememberNavController()) {
-    LazyColumn (
+fun SearchScreen(navController: NavHostController) {
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .background(color = colorResource(id = R.color.white))
@@ -55,23 +56,15 @@ fun SearchField(navController: NavHostController) {
                     navController.navigateUp()
                 }
             )
-            InputField(inputtext = "${town} 근처에서 검색")
+            InputField(inputtext = "$town 근처에서 검색")
         }
-
-        Spacer(
-            modifier = Modifier
-                .height(1.dp)
-                .fillMaxWidth()
-                .background(color = colorResource(id = R.color.gray1))
-        )
+        Layer()
     }
 }
 
-
-
-
-@Preview (showBackground = true)
+@Preview(showBackground = true)
 @Composable
 fun SearchPreview() {
-    SearchScreen()
+    val navController = rememberNavController()
+    SearchScreen(navController)
 }

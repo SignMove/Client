@@ -31,7 +31,7 @@ import com.example.signmove.medium
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InputField(descriptext: String? = null, inputtext: String) {
+fun InputField(descriptext: String? = null, inputtext: String, value: String = "", onValueChange: (String) -> Unit = {}) {
     var text by remember { mutableStateOf("") }
     val textState = remember { mutableStateOf("") }
 
@@ -70,8 +70,8 @@ fun InputField(descriptext: String? = null, inputtext: String) {
         )
         {
             BasicTextField(
-                value = textState.value,
-                onValueChange = { textState.value = it },
+                value = value,
+                onValueChange = { new -> onValueChange(new) },
                 modifier = Modifier
                     .padding( horizontal = 16.dp, vertical = 10.dp),
 
@@ -93,10 +93,4 @@ fun InputField(descriptext: String? = null, inputtext: String) {
             )
         }
     }
-}
-
-@Preview (showBackground = true)
-@Composable
-fun FieldPreview() {
-    InputField(descriptext = "앙김호지", inputtext = "깁호지")
 }

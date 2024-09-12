@@ -5,6 +5,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,6 +21,7 @@ import com.example.signmove.component.RegisterMainText
 
 @Composable
 fun InputNameScreen(navController: NavHostController = rememberNavController()) {
+    var name by remember { mutableStateOf("") }
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -25,10 +30,17 @@ fun InputNameScreen(navController: NavHostController = rememberNavController()) 
         RegisterMainText(text = "이름을 입력해주세요") {
             //인텐트 !!!!
         }
-        InputField(descriptext = "이름", inputtext = "입력해 주세요")
+        InputField(
+            descriptext = "이름",
+            inputtext = "입력해 주세요",
+            value = name,
+            onValueChange = { newName -> name = newName }
+        )
         Spacer(modifier = Modifier.weight(1f))
         Button(text = "다음") {
-            navController.navigate("intro")
+            if (name.isNotEmpty()) {
+                navController.navigate("intro/$name")
+            }
         }
     }
 }

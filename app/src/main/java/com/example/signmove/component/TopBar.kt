@@ -1,6 +1,7 @@
 package com.example.signmove.component
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,40 +26,43 @@ fun TopBar(
     onRegionSelectClick: () -> Unit,
     onSearchClick: () -> Unit
 ) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(60.dp)
-            .padding(vertical = 16.dp, horizontal = 20.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
+    Column {
         Row(
             modifier = Modifier
-                .clickable(onClick = onRegionSelectClick),
+                .fillMaxWidth()
+                .height(60.dp)
+                .padding(vertical = 16.dp, horizontal = 20.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                text = "은평구",
-                fontFamily = bold,
-                fontSize = 20.sp,
-                lineHeight = 28.sp,
-                color = colorResource(id = R.color.gray5)
-            )
-            Spacer(modifier = Modifier.width(6.dp))
+            Row(
+                modifier = Modifier
+                    .clickable(onClick = onRegionSelectClick),
+            ) {
+                Text(
+                    text = "은평구",
+                    fontFamily = bold,
+                    fontSize = 20.sp,
+                    lineHeight = 28.sp,
+                    color = colorResource(id = R.color.gray5)
+                )
+                Spacer(modifier = Modifier.width(6.dp))
+                Icon(
+                    painter = painterResource(id = R.drawable.down),
+                    contentDescription = "동네 선택"
+                )
+            }
+
+            Spacer(modifier = Modifier.weight(1f))
+
+            // 검색 아이콘 부분
             Icon(
-                painter = painterResource(id = R.drawable.down),
-                contentDescription = "동네 선택"
+                painter = painterResource(id = R.drawable.search),
+                contentDescription = "검색",
+                modifier = Modifier
+                    .clickable(onClick = onSearchClick)
             )
         }
-
-        Spacer(modifier = Modifier.weight(1f))
-
-        // 검색 아이콘 부분
-        Icon(
-            painter = painterResource(id = R.drawable.search),
-            contentDescription = "검색",
-            modifier = Modifier
-                .clickable(onClick = onSearchClick)
-        )
+        Layer()
     }
 }
 

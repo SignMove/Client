@@ -58,15 +58,10 @@ fun BackOrCompleteBar(pagename : String, onclick: () -> Unit) {
                 lineHeight = 25.2.sp,
                 modifier = Modifier
                     .clickable(onClick = onclick)
-
             )
         }
     }
-    Spacer(modifier = Modifier
-        .height(1.dp)
-        .fillMaxWidth()
-        .background(color = colorResource(id = R.color.gray1)))
-
+    Layer()
 }
 
 

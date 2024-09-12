@@ -27,46 +27,53 @@ import com.example.signmove.R
 @Composable
 fun NavigationBar(modifier: Modifier = Modifier, navController: NavHostController) {
     val currentRoute = currentRoute(navController)
-    Row(
+
+    Column(
         modifier = modifier
             .fillMaxWidth()
-            .height(58.dp)
-            .padding(vertical = 8.dp)
             .background(color = colorResource(id = R.color.white))
-        ,
-        horizontalArrangement = Arrangement.Center
-
     ) {
-        NavigationItem(
-            iconResId = if (currentRoute == "main") R.drawable.selectedhome else R.drawable.home,
-            label = "홈",
-            isSelected = currentRoute == "main",
-            onClick = { navController.navigate("main") },
-            modifier = Modifier.weight(1f)
-        )
-        NavigationItem(
-            iconResId = if (currentRoute == "issue") R.drawable.selectedissue else R.drawable.issue,
-            label = "이슈",
-            isSelected = currentRoute == "issue",
-            onClick = { navController.navigate("issue") },
-            modifier = Modifier.weight(1f)
-        )
-        NavigationItem(
-            iconResId = if (currentRoute == "sign") R.drawable.selectedsign else R.drawable.sign,
-            label = "서명",
-            isSelected = currentRoute == "sign",
-            onClick = { navController.navigate("sign") },
-            modifier = Modifier.weight(1f)
-        )
-        NavigationItem(
-            iconResId = if (currentRoute == "profile") R.drawable.selectedprofile else R.drawable.profile,
-            label = "프로필",
-            isSelected = currentRoute == "profile",
-            onClick = { navController.navigate("profile") },
-            modifier = Modifier.weight(1f)
-        )
+        Layer()
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(58.dp)
+                .padding(vertical = 8.dp)
+                .background(color = colorResource(id = R.color.white)),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            NavigationItem(
+                iconResId = if (currentRoute == "main") R.drawable.selectedhome else R.drawable.home,
+                label = "홈",
+                isSelected = currentRoute == "main",
+                onClick = { navController.navigate("main") },
+                modifier = Modifier.weight(1f)
+            )
+            NavigationItem(
+                iconResId = if (currentRoute == "issue") R.drawable.selectedissue else R.drawable.issue,
+                label = "이슈",
+                isSelected = currentRoute == "issue",
+                onClick = { navController.navigate("issue") },
+                modifier = Modifier.weight(1f)
+            )
+            NavigationItem(
+                iconResId = if (currentRoute == "sign") R.drawable.selectedsign else R.drawable.sign,
+                label = "서명",
+                isSelected = currentRoute == "sign",
+                onClick = { navController.navigate("sign") },
+                modifier = Modifier.weight(1f)
+            )
+            NavigationItem(
+                iconResId = if (currentRoute == "profile") R.drawable.selectedprofile else R.drawable.profile,
+                label = "프로필",
+                isSelected = currentRoute == "profile",
+                onClick = { navController.navigate("profile") },
+                modifier = Modifier.weight(1f)
+            )
+        }
     }
 }
+
 
 @Composable
 fun NavigationItem(iconResId: Int, label: String, isSelected: Boolean, onClick: () -> Unit, modifier: Modifier = Modifier) {

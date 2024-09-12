@@ -1,4 +1,4 @@
-package com.example.signmove.model.res
+package com.example.signmove.model
 
 data class News(
     val id: Int,
